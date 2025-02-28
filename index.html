@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!-- 360 Image -->
+        <a-sky src="3.png"></a-sky>
+
+        <!-- Interactive Objects -->
+        <a-box id="object1" position="-1 1.5 -3" color="red"></a-box>
+        <a-box id="object2" position="1 1.5 -3" color="blue"></a-box>
+
+        <!-- Camera with Raycaster -->
+        <a-entity camera look-controls>
+            <a-entity 
+                cursor="fuse: true; fuseTimeout: 1000"
+                raycaster="objects: #object1, #object2"
+                position="0 0 -1">
+            </a-entity>
+        </a-entity>
+    </a-scene>
+
+    <script>
+        // Detect when the camera (raycaster) hovers over an object
+        document.querySelector("#object1").addEventListener("mouseenter", () => {
+            console.log("You are looking at Object 1");
+        });
+
+        document.querySelector("#object2").addEventListener("mouseenter", () => {
+            console.log("You are looking at Object 2");
+        });
+
+        document.querySelector("#object1").addEventListener("mouseleave", () => {
+            console.log("You stopped looking at Object 1");
+        });
+
+        document.querySelector("#object2").addEventListener("mouseleave", () => {
+            console.log("You stopped looking at Object 2");
+        });
+    </script>
+</body>
+</html>
