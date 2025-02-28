@@ -8,10 +8,10 @@
         <!-- 360 Image -->
         <a-sky src="3.png"></a-sky>
 
-        <!-- Ceiling Plane -->
+        <!-- Ceiling Plane with Transparency -->
         <a-plane id="ceiling" position="0.5 10 0" width="8" height="30" color="purple" rotation="90 -5 0"  material="opacity: 0.5; transparent: true"></a-plane>
 
-        <!-- Camera with Raycaster -->
+        <!-- Camera with Raycaster & Visible Ray -->
         <a-entity camera look-controls>
             <a-entity 
                 id="ray"
@@ -21,23 +21,20 @@
                 position="0 0 -1">
             </a-entity>
         </a-entity>
+
+        <!-- VR Text Display -->
+        <a-entity id="statusText" position="0 2 -2" text="value: Look around; color: white; align: center; width: 4;"></a-entity>
     </a-scene>
 
-    <!-- Display Area -->
-    <h1 id="output" style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); color: white;">
-        
-    </h1>
-
     <script>
-        const output = document.getElementById("output");
-        const ceiling = document.getElementById("ceiling");
-
-        ceiling.addEventListener("mouseenter", () => {
-            output.textContent = "Ceiling Plane Triggered"; 
+        const statusText = document.querySelector("#statusText");
+        
+        document.querySelector("#ceiling").addEventListener("mouseenter", () => {
+            statusText.setAttribute("text", "value", "You are looking at the Ceiling");
         });
 
-        ceiling.addEventListener("mouseleave", () => {
-            output.textContent = "";
+        document.querySelector("#ceiling").addEventListener("mouseleave", () => {
+            statusText.setAttribute("text", "value", "Look around");
         });
     </script>
 </body>
