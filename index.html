@@ -8,38 +8,36 @@
         <!-- 360 Image -->
         <a-sky src="3.png"></a-sky>
 
-        <!-- Interactive Objects -->
-        <a-box id="object1" position="-1 1.5 -3" color="red"></a-box>
-        <a-box id="object2" position="1 1.5 -3" color="blue"></a-box>
+        <!-- Ceiling Plane -->
+        <a-plane id="ceiling" position="0.5 10 0" width="8" height="30" color="purple" rotation="90 -5 0"  material="opacity: 0.5; transparent: true"></a-plane>
 
-        <!-- Camera with Raycaster & Visible Ray -->
+        <!-- Camera with Raycaster -->
         <a-entity camera look-controls>
             <a-entity 
                 id="ray"
                 cursor="fuse: true; fuseTimeout: 1000"
-                raycaster="objects: #object1, #object2; showLine: true"
+                raycaster="objects: #ceiling; showLine: true"
                 line="start: 0, 0, 0; end: 0, 0, -2; color: yellow"
                 position="0 0 -1">
             </a-entity>
         </a-entity>
     </a-scene>
 
+    <!-- Display Area -->
+    <h1 id="output" style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); color: white;">
+        
+    </h1>
+
     <script>
-        // Detect when the camera (raycaster) hovers over an object
-        document.querySelector("#object1").addEventListener("mouseenter", () => {
-            console.log("You are looking at Object 1");
+        const output = document.getElementById("output");
+        const ceiling = document.getElementById("ceiling");
+
+        ceiling.addEventListener("mouseenter", () => {
+            output.textContent = "Ceiling Plane Triggered"; 
         });
 
-        document.querySelector("#object2").addEventListener("mouseenter", () => {
-            console.log("You are looking at Object 2");
-        });
-
-        document.querySelector("#object1").addEventListener("mouseleave", () => {
-            console.log("You stopped looking at Object 1");
-        });
-
-        document.querySelector("#object2").addEventListener("mouseleave", () => {
-            console.log("You stopped looking at Object 2");
+        ceiling.addEventListener("mouseleave", () => {
+            output.textContent = "";
         });
     </script>
 </body>
