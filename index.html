@@ -12,11 +12,13 @@
         <a-box id="object1" position="-1 1.5 -3" color="red"></a-box>
         <a-box id="object2" position="1 1.5 -3" color="blue"></a-box>
 
-        <!-- Camera with Raycaster -->
+        <!-- Camera with Raycaster & Visible Ray -->
         <a-entity camera look-controls>
             <a-entity 
+                id="ray"
                 cursor="fuse: true; fuseTimeout: 1000"
-                raycaster="objects: #object1, #object2"
+                raycaster="objects: #object1, #object2; showLine: true"
+                line="start: 0, 0, 0; end: 0, 0, -2; color: yellow"
                 position="0 0 -1">
             </a-entity>
         </a-entity>
